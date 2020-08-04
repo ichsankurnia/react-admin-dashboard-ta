@@ -1,5 +1,6 @@
 {
   "name": "react-dashboard-argon-template",
+  "homepage": "https://darkyasha.goes2nobel.com/TA/cms/",
   "version": "1.1.0",
   "description": "React CMS of Argon Dashboard by Ichsan Kurniawan",
   "main": "index.js",
