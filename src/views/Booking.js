@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "components/Headers/Header";
 import { Container, Row, Button, Modal,
 	Card,
 	CardHeader,
@@ -17,9 +16,10 @@ import { Container, Row, Button, Modal,
     Col
 } from "reactstrap";
 
-import { getAllBooking } from "api/ApiTransaction";
-import { getBookingByInvoice } from "api/ApiTransaction";
-import { updatePaymentStatus } from "api/ApiTransaction";
+import Header from "../components/Headers/Header";
+import { getAllBooking } from "../api/ApiTransaction";
+import { getBookingByInvoice } from "../api/ApiTransaction";
+import { updatePaymentStatus } from "../api/ApiTransaction";
 
 
 // Table Row
@@ -57,7 +57,7 @@ class Booking extends React.Component{
             showModalDetail : false,
 
             dataBooking: [],
-            dataBookingByInvoice: [],
+            dataBookingByInvoice: null,
             name: "",
             username: "",
             password: "",
@@ -120,7 +120,7 @@ class Booking extends React.Component{
     handleCloseModal = async () => {
         this.setState({
             showModalDetail: false,
-            dataBookingByInvoice : []
+            dataBookingByInvoice : null
         })
     }
 
@@ -199,50 +199,87 @@ class Booking extends React.Component{
                 </Container>
 
                 {/* Modal Add New User */}
-                <Modal isOpen={this.state.showModalDetail}>
+                {
+                    this.state.dataBookingByInvoice !== null?
+                <Modal contentClassName="custom-modal" isOpen={this.state.showModalDetail}>
                     <ModalHeader>Detail Booking</ModalHeader>
                     <ModalBody>
                         <Row form>
+                            <Col md={3}>
+                                <FormGroup>
+                                    <Label>Invoice Number</Label>
+                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.invoice_no} readOnly />
+                                </FormGroup>
+                            </Col>
+                            <Col md={3}>
+                                <FormGroup>
+                                    <Label>Paymet Status</Label>
+                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.payment_status} readOnly />
+                                </FormGroup>
+                            </Col>
                             <Col md={6}>
-                            <FormGroup>
-                                <Label for="exampleCity">Invoice Number</Label>
-                                <Input type="text" name="city" id="exampleCity" defaultValue={this.state.dataBookingByInvoice.invoice_no} readOnly />
-                            </FormGroup>
-                            </Col>
-                            <Col md={4}>
-                            <FormGroup>
-                                <Label for="exampleState">Paymet Status</Label>
-                                <Label for="exampleState">{this.state.dataBookingByInvoice.payment_status}</Label>
-                            </FormGroup>
-                            </Col>
-                            <Col md={2}>
-                            <FormGroup>
-                                <Label for="exampleZip">Zip</Label>
-                                <Input type="text" name="zip" id="exampleZip"/>
-                            </FormGroup>  
+                                <FormGroup>
+                                    <Label>Date</Label>
+                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.createdAt} readOnly />
+                                </FormGroup>  
                             </Col>
                         </Row>
-                        <FormGroup>
-                            <Label for="name">Name</Label>
-                            <Input type="text" name="name" id="name" value={this.state.name} onChange={e => this.setState({name: e.target.value})} />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="username">Username</Label>
-                            <Input type="text" name="username" id="username" value={this.state.username} onChange={e => this.setState({username: e.target.value})} />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="examplePassword">Password</Label>
-                            <Input type="password" name="password" id="examplePassword" value={this.state.password} onChange={e => this.setState({password: e.target.value})} />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="exampleEmail">Email</Label>
-                            <Input type="email" name="name" id="exampleEmail" value={this.state.email} onChange={e => this.setState({email: e.target.value})} />
-                        </FormGroup>
+                        <Row form>
+                            <Col md={6}>
+                                <FormGroup>
+                                    <Label for="exampleCity">Service</Label>
+                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.jasa_name} readOnly />
+                                </FormGroup>
+                            </Col>
+                            <Col md={6}>
+                                <FormGroup>
+                                    <Label for="exampleState">Prices</Label>
+                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.jasa_price} readOnly />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row form>
+                            <Col md={7}>
+                                <FormGroup>
+                                    <Label for="exampleCity">Sub Category</Label>
+                                    <Row form>
+                                        <Col md={3}>
+                                            <img style={{width: '100%', borderRadius: 20}} src={this.state.dataBookingByInvoice.Jasa.Sub_category.img_url} alt={this.state.dataBookingByInvoice.Jasa.Sub_category.sub_category_name} />
+                                        </Col>
+                                        <Col md={9}>
+                                            <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.Sub_category.sub_category_name} readOnly />
+                                        </Col>
+                                    </Row>
+                                </FormGroup>
+                            </Col>
+                            <Col md={5}>
+                                <FormGroup>
+                                    <Label for="exampleState">Category</Label>
+                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.Sub_category.sub_category_name} readOnly />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row form>
+                            <Col md={6}>
+                                <FormGroup>
+                                    <Label for="exampleCity">User</Label>
+                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.User.name} readOnly />
+                                </FormGroup>
+                            </Col>
+                            <Col md={6}>
+                                <FormGroup>
+                                    <Label for="exampleState">Email</Label>
+                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.User.email} readOnly />
+                                </FormGroup>
+                            </Col>
+                        </Row>
                     </ModalBody>
                     <ModalFooter>
                         <Button color="secondary" onClick={this.handleCloseModal}>Close</Button>
                     </ModalFooter>
-                </Modal>
+                </Modal> : null
+
+                }
             </>
         )
     }
