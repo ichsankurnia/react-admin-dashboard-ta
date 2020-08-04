@@ -24,7 +24,7 @@ const getBookingListByUserId = async (userId) => {
 
 const getBookingByInvoice = async (invoiceNo) => {
     try {
-        const data = axios.get(`${base_url}/booking/${invoiceNo}`)
+        const data = axios.get(`${base_url}/booking-detail/${invoiceNo}`)
 
         return data
     } catch (error) {
@@ -40,6 +40,27 @@ const updatePaymentStatus = async (bodyRaw) => {
         return data
     } catch (error) {
         return JSON.parse(JSON.stringify(error))        
+    }
+}
+
+
+const getAllConfirmPayment = async() => {
+    try {
+        const data = axios.get(`${base_url}/confirm-payment-list`)
+
+        return data
+    } catch (error) {
+        return JSON.parse(JSON.stringify(error))
+    }
+}
+
+const getConfirmPaymentByInvoice = async (invoiceNo) => {
+    try {
+        const data = axios.get(`${base_url}/confirm-payment-detail/${invoiceNo}`)
+
+        return data
+    } catch (error) {
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -66,7 +87,7 @@ const getTransactionCompleteListByUserId = async (userId) => {
 
 const getTransactionCompleteByInvoice = async (invoiceNo) => {
     try {
-        const data = axios.get(`${base_url}/payment-complate/${invoiceNo}`)
+        const data = axios.get(`${base_url}/payment-complate-detail/${invoiceNo}`)
 
         return data
     } catch (error) {
@@ -81,6 +102,8 @@ export {
     getBookingListByUserId,
     getBookingByInvoice,
     updatePaymentStatus,
+    getAllConfirmPayment,
+    getConfirmPaymentByInvoice,
     getTransactionComplete,
     getTransactionCompleteListByUserId,
     getTransactionCompleteByInvoice
