@@ -13,7 +13,8 @@ import { Container, Row, Button, Modal,
 	FormGroup,
 	Input,
     Label,  
-    Col
+    Col,
+    DropdownItem
 } from "reactstrap";
 
 import Header from "../components/Headers/Header";
@@ -200,84 +201,86 @@ class Booking extends React.Component{
 
                 {/* Modal Add New User */}
                 {
-                    this.state.dataBookingByInvoice !== null?
-                <Modal contentClassName="custom-modal" isOpen={this.state.showModalDetail}>
-                    <ModalHeader>Detail Booking</ModalHeader>
-                    <ModalBody>
-                        <Row form>
-                            <Col md={3}>
-                                <FormGroup>
-                                    <Label>Invoice Number</Label>
-                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.invoice_no} readOnly />
-                                </FormGroup>
-                            </Col>
-                            <Col md={3}>
-                                <FormGroup>
-                                    <Label>Paymet Status</Label>
-                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.payment_status} readOnly />
-                                </FormGroup>
-                            </Col>
-                            <Col md={6}>
-                                <FormGroup>
-                                    <Label>Date</Label>
-                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.createdAt} readOnly />
-                                </FormGroup>  
-                            </Col>
-                        </Row>
-                        <Row form>
-                            <Col md={6}>
-                                <FormGroup>
-                                    <Label for="exampleCity">Service</Label>
-                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.jasa_name} readOnly />
-                                </FormGroup>
-                            </Col>
-                            <Col md={6}>
-                                <FormGroup>
-                                    <Label for="exampleState">Prices</Label>
-                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.jasa_price} readOnly />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row form>
-                            <Col md={7}>
-                                <FormGroup>
-                                    <Label for="exampleCity">Sub Category</Label>
-                                    <Row form>
-                                        <Col md={3}>
-                                            <img style={{width: '100%', borderRadius: 20}} src={this.state.dataBookingByInvoice.Jasa.Sub_category.img_url} alt={this.state.dataBookingByInvoice.Jasa.Sub_category.sub_category_name} />
-                                        </Col>
-                                        <Col md={9}>
-                                            <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.Sub_category.sub_category_name} readOnly />
-                                        </Col>
-                                    </Row>
-                                </FormGroup>
-                            </Col>
-                            <Col md={5}>
-                                <FormGroup>
-                                    <Label for="exampleState">Category</Label>
-                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.Sub_category.sub_category_name} readOnly />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row form>
-                            <Col md={6}>
-                                <FormGroup>
-                                    <Label for="exampleCity">User</Label>
-                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.User.name} readOnly />
-                                </FormGroup>
-                            </Col>
-                            <Col md={6}>
-                                <FormGroup>
-                                    <Label for="exampleState">Email</Label>
-                                    <Input type="text" defaultValue={this.state.dataBookingByInvoice.User.email} readOnly />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="secondary" onClick={this.handleCloseModal}>Close</Button>
-                    </ModalFooter>
-                </Modal> : null
+                this.state.dataBookingByInvoice !== null?
+                    <Modal contentClassName="custom-modal" isOpen={this.state.showModalDetail}>
+                        <ModalHeader>Detail Booking</ModalHeader>
+                        <ModalBody>
+                            <Row form>
+                                <Col md={3}>
+                                    <FormGroup>
+                                        <Label>Invoice Number</Label>
+                                        <Input type="text" defaultValue={this.state.dataBookingByInvoice.invoice_no} readOnly />
+                                    </FormGroup>
+                                </Col>
+                                <Col md={3}>
+                                    <FormGroup>
+                                        <Label>Paymet Status</Label>
+                                        <Input type="text" style={{fontWeight: 'bolder', color: this.state.dataBookingByInvoice.payment_status === "PAID"? '#0f0' : '#f22'}} 
+                                                defaultValue={this.state.dataBookingByInvoice.payment_status} readOnly/>
+                                    </FormGroup>
+                                </Col>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label>Date</Label>
+                                        <Input type="text" defaultValue={this.state.dataBookingByInvoice.createdAt} readOnly />
+                                    </FormGroup>  
+                                </Col>
+                            </Row>
+                            <Row form>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="exampleCity">Service</Label>
+                                        <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.jasa_name} readOnly />
+                                    </FormGroup>
+                                </Col>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="exampleState">Prices</Label>
+                                        <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.jasa_price} readOnly />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                            <Row form>
+                                <Col md={7}>
+                                    <FormGroup>
+                                        <Label for="exampleCity">Sub Category</Label>
+                                        <Row form>
+                                            <Col md={3}>
+                                                <img style={{width: '100%', borderRadius: 20}} src={this.state.dataBookingByInvoice.Jasa.Sub_category.img_url} alt={this.state.dataBookingByInvoice.Jasa.Sub_category.sub_category_name} />
+                                            </Col>
+                                            <Col md={9}>
+                                                <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.Sub_category.sub_category_name} readOnly />
+                                            </Col>
+                                        </Row>
+                                    </FormGroup>
+                                </Col>
+                                <Col md={5}>
+                                    <FormGroup>
+                                        <Label for="exampleState">Category</Label>
+                                        <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.Sub_category.sub_category_name} readOnly />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                            <DropdownItem divider />
+                            <Row form>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="exampleCity">User</Label>
+                                        <Input type="text" defaultValue={this.state.dataBookingByInvoice.User.name} readOnly />
+                                    </FormGroup>
+                                </Col>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="exampleState">Email</Label>
+                                        <Input type="text" defaultValue={this.state.dataBookingByInvoice.User.email} readOnly />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="secondary" onClick={this.handleCloseModal}>Close</Button>
+                        </ModalFooter>
+                    </Modal> : null
 
                 }
             </>
