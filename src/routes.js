@@ -10,6 +10,7 @@ import Services from "./views/Services";
 import Users from "./views/Users";
 import Booking from "./views/Booking"
 import ConfirmPayment from "./views/ConfirmPayment.js";
+import TransactionComplete from "./views/TransactionComplete.js";
 
 var routes = [
 	{
@@ -45,6 +46,13 @@ var routes = [
 		name: "Confirm Payment",
 		icon: "ni ni-money-coins text-yellow",
 		component: ConfirmPayment,
+		layout: "/admin"
+	},
+	{
+		path: "/transaction-complete",
+		name: "Transaction Complete",
+		icon: "ni ni-favourite-28 text-pink",
+		component: TransactionComplete,
 		layout: "/admin"
 	},
 	{

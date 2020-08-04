@@ -65,9 +65,9 @@ const getConfirmPaymentByInvoice = async (invoiceNo) => {
 }
 
 
-const getTransactionComplete = async () => {
+const getAllTransactionComplete = async () => {
     try {
-        const data = axios.get(`${base_url}/payment-complate-list`)
+        const data = axios.get(`${base_url}/transaction-complate-list`)
 
         return data
     } catch (error) {
@@ -77,7 +77,7 @@ const getTransactionComplete = async () => {
 
 const getTransactionCompleteListByUserId = async (userId) => {
     try {
-        const data = axios.get(`${base_url}/payment-complate-list/${userId}`)
+        const data = axios.get(`${base_url}/transaction-complate-list/${userId}`)
 
         return data
     } catch (error) {
@@ -87,7 +87,7 @@ const getTransactionCompleteListByUserId = async (userId) => {
 
 const getTransactionCompleteByInvoice = async (invoiceNo) => {
     try {
-        const data = axios.get(`${base_url}/payment-complate-detail/${invoiceNo}`)
+        const data = axios.get(`${base_url}/transaction-complate-detail/${invoiceNo}`)
 
         return data
     } catch (error) {
@@ -104,7 +104,7 @@ export {
     updatePaymentStatus,
     getAllConfirmPayment,
     getConfirmPaymentByInvoice,
-    getTransactionComplete,
+    getAllTransactionComplete,
     getTransactionCompleteListByUserId,
     getTransactionCompleteByInvoice
 }
