@@ -1,7 +1,6 @@
 import React from "react";
 // reactstrap components
 import {
-	Badge,
 	Card,
 	CardHeader,
 	CardFooter,
@@ -13,7 +12,6 @@ import {
 	Pagination,
 	PaginationItem,
 	PaginationLink,
-	Progress,
 	Table,
 	Container,
 	Row,
@@ -28,8 +26,8 @@ import {
 	FormText
 } from "reactstrap";
 
-import Header from "components/Headers/Header";
-import { getCategory, createNewCategory, updateCategory, deleteCategory, createNewSubCategory, updateSubCategory, deleteSubCategory } from "api/APICategory";
+import Header from "../components/Headers/Header";
+import { getCategory, createNewCategory, updateCategory, deleteCategory, createNewSubCategory, updateSubCategory, deleteSubCategory } from "../api/APICategory";
 
 
 // Row Table
@@ -45,20 +43,6 @@ const TableRow = (props) => {
 				</Media>
 			</th>
 			<td>{props.getData.sub_category_desc}</td>
-			<td>
-				<Badge color="" className="badge-dot mr-4"><i className="bg-warning" />{props.getData.createdAt}</Badge>
-			</td>
-			<td>
-				<Badge color="" className="badge-dot mr-4"><i className="bg-warning" />{props.getData.updatedAt}</Badge>
-			</td>
-			<td>
-				<div className="d-flex align-items-center">
-					<span className="mr-2">60%</span>
-					<div>
-						<Progress max="100" value="60" barClassName="bg-warning"/>
-					</div>
-				</div>
-			</td>
 			<td className="text-right">
 				<UncontrolledDropdown>
 					<DropdownToggle className="btn-icon-only text-light" href="#pablo" role="button" size="sm" color="" onClick={e => e.preventDefault()}>
@@ -113,9 +97,6 @@ const TableContent = (props) => {
 							<tr>
 								<th scope="col">Sub Category</th>
 								<th scope="col">Deskripsi</th>
-								<th scope="col">Created At</th>
-								<th scope="col">Updated At</th>
-								<th scope="col">Progress</th>
 								<th scope="col" />
 							</tr>
 						</thead>

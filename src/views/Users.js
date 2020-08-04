@@ -50,8 +50,13 @@ const TableRow = (props) => {
 						<i className="fas fa-ellipsis-v" />
 					</DropdownToggle>
 					<DropdownMenu className="dropdown-menu-arrow" right>
-						<DropdownItem onClick={() => props.onClickUpdate(props.getData.user_id)}>{props.getData.is_admin? "Remove this user from admin" : "Change this user to admin"}</DropdownItem>
-						<DropdownItem onClick={() => props.onClickDelete(props.getData.user_id)}>Delete User</DropdownItem>
+                        <DropdownItem className="text-hover" onClick={() => props.onClickUpdate(props.getData.user_id)}>
+                            {props.getData.is_admin? "Remove this user from admin" : "Change this user to admin"}
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem className="text-hover" onClick={() => props.onClickDelete(props.getData.user_id)}>
+                            Delete User
+                        </DropdownItem>
 					</DropdownMenu>
 				</UncontrolledDropdown>
 			</td>

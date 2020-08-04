@@ -41,8 +41,10 @@ const TableRow = (props) => {
                 }
             </td>
 			<td>{props.getData.createdAt}</td>
-            <td className="icon-hover" style={{width: '8%'}} onClick={() => props.onClickDetail(props.getData.invoice_no)}>
-                <i className="ni ni-align-left-2"></i>
+            <td style={{width: '8%'}}>
+                <span  className="icon-hover" style={{padding: 10}} onClick={() => props.onClickDetail(props.getData.invoice_no)}>
+                    <i className="ni ni-align-left-2"></i>
+                </span>
             </td>
 		</tr>
 	)
@@ -257,7 +259,7 @@ class Booking extends React.Component{
                                 <Col md={5}>
                                     <FormGroup>
                                         <Label for="exampleState">Category</Label>
-                                        <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.Sub_category.sub_category_name} readOnly />
+                                        <Input type="text" defaultValue={this.state.dataBookingByInvoice.Jasa.Sub_category.Category.category_name} readOnly />
                                     </FormGroup>
                                 </Col>
                             </Row>
