@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "components/Headers/Header";
 import { Container, Row, Button, Modal,
 	Card,
 	CardHeader,
@@ -20,19 +19,22 @@ import { Container, Row, Button, Modal,
 	Label,  
 } from "reactstrap";
 
+import Header from "../components/Headers/Header";
+
 import { 
     getAllUser,
     createNewUser,
     updateAsAdmin,
     deleteUser
-} from "api/ApiUsers";
+} from "../api/ApiUsers";
 
 
 // Table Row
 const TableRow = (props) => {
 	return(
 		<tr>
-			<th scope="row">{props.getData.name}</th>
+			<th scope="row">{props.getData.user_id}</th>
+			<th>{props.getData.name}</th>
             <td>{props.getData.username}</td>
             <td style={{width: '15%'}}><Input type="password" defaultValue={props.getData.password} readOnly /></td>
 			<td>{props.getData.email}</td>
@@ -192,6 +194,7 @@ class Users extends React.Component{
                                 <Table className="align-items-center table-dark table-flush" responsive>
                                     <thead className="thead-dark">
                                         <tr>
+                                        <th scope="col">ID</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Username</th>
                                         <th scope="col">Password</th>

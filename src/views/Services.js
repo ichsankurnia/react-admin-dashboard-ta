@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "components/Headers/Header";
 import { Container, Row, Button, Modal,
 	Card,
 	CardHeader,
@@ -20,20 +19,24 @@ import { Container, Row, Button, Modal,
 	Input,
 	Label,  
 } from "reactstrap";
-import { getSubCategory } from "api/APICategory";
+
+import Header from "../components/Headers/Header";
+
+import { getSubCategory } from "../api/APICategory";
 import { 
     getAllJasa, 
     createNewJasa, 
-    updateJasa 
-} from "api/APIJasa";
-import { deleteJasa } from "api/APIJasa";
+    updateJasa,
+    deleteJasa 
+} from "../api/APIJasa";
 
 
 // Table Row
 const TableRow = (props) => {
 	return(
 		<tr>
-			<th scope="row">{props.getData.jasa_name}</th>
+			<th scope="row">{props.getData.jasa_id}</th>
+			<th>{props.getData.jasa_name}</th>
 			<td>{props.getData.jasa_desc}</td>
             <td>Rp{props.getData.jasa_price}</td>
 			<td>
@@ -185,6 +188,7 @@ class Services extends React.Component{
                                 <Table className="align-items-center table-dark table-flush" responsive>
                                     <thead className="thead-dark">
                                         <tr>
+                                        <th scope="col">ID</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Description</th>
                                         <th scope="col">Price</th>
