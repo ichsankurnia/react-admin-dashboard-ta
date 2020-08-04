@@ -7,3 +7,29 @@
     cursor: pointer;
     border: 1px solid #fff;
 }
+
+.text-hover:hover{
+    cursor: pointer;
+    border: 1px solid #777;
+}
+
+.custom-modal{
+    width: 120%;
+}
+
+.img-confirm-payment{
+    width: 50px;
+}
+
+.img-confirm-payment:hover{
+    cursor: pointer;
+    border: 1px solid #fff;
+}
+
+.img-modal:hover{
+    -webkit-transform:scale(12); /* Safari and Chrome */
+    -moz-transform:scale(12); /* Firefox */
+    -ms-transform:scale(12); /* IE 12 */
+    -o-transform:scale(12); /* Opera */
+     transform:scale(12);
+}
