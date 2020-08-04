@@ -1,0 +1,9 @@
+.custom-row:hover {
+    cursor: pointer;
+    border: 3px solid #fff;
+}
+
+.icon-hover:hover{
+    cursor: pointer;
+    border: 1px solid #fff;
+}
