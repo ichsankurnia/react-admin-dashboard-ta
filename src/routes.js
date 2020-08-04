@@ -9,6 +9,7 @@ import Categories from "./views/Categories";
 import Services from "./views/Services";
 import Users from "./views/Users";
 import Booking from "./views/Booking"
+import ConfirmPayment from "./views/ConfirmPayment.js";
 
 var routes = [
 	{
@@ -37,6 +38,13 @@ var routes = [
 		name: "Booking",
 		icon: "ni ni-cart text-purple",
 		component: Booking,
+		layout: "/admin"
+	},
+	{
+		path: "/confirm-payment",
+		name: "Confirm Payment",
+		icon: "ni ni-money-coins text-yellow",
+		component: ConfirmPayment,
 		layout: "/admin"
 	},
 	{
