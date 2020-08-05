@@ -26,12 +26,14 @@ import {
 	Col
 } from "reactstrap";
 
+
 class Sidebar extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			collapseOpen: false
+			collapseOpen: false,
+			logout: false
 		};
 
 		this.activeRoute.bind(this);
@@ -56,15 +58,9 @@ class Sidebar extends React.Component {
 	createLinks = (routes) => {
 		// return routes.map((prop, key) => {
 		return routes.map((data) => {
-			// console.log(key)
 			return (
 				<NavItem key={data.name}>
-					<NavLink
-						to={data.layout + data.path}
-						tag={NavLinkRRD}
-						onClick={this.closeCollapse}
-						activeClassName="active"
-					>
+					<NavLink to={data.layout + data.path} tag={NavLinkRRD} onClick={this.closeCollapse} activeClassName="active">
 						<i className={data.icon} />
 						{data.name}
 					</NavLink>
@@ -72,6 +68,14 @@ class Sidebar extends React.Component {
 			);
 		});
 	};
+
+
+	handleLogout = () => {
+		// localStorage.clear()
+
+		return "/auth/login"
+	}
+
 
 	render() {
 		// const { routes, logo } = this.props;
@@ -234,7 +238,17 @@ class Sidebar extends React.Component {
 
 
 						{/* Navigation Semua sidebar*/}
-						<Nav navbar>{this.createLinks(this.props.routes)}</Nav>
+						<Nav navbar>
+							{this.createLinks(this.props.routes)}
+
+							{/* LOGOUT */}
+							<NavItem>
+								<NavLink to={this.handleLogout}  tag={NavLinkRRD} onClick={() => localStorage.clear()} >
+									<i className='ni ni-button-power text-black' />
+									Logout
+								</NavLink>
+							</NavItem>
+						</Nav>
 						
 						{/* Divider */}
 						<hr className="my-3" />
