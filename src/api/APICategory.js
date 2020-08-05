@@ -8,7 +8,7 @@ const getCategory = async () => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -18,7 +18,7 @@ const createNewCategory = async (dataReq) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -28,7 +28,7 @@ const updateCategory = async (id, dataReq) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -38,7 +38,7 @@ const deleteCategory = async (id) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 //#endregion
@@ -51,7 +51,7 @@ const getSubCategory = async () => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -61,7 +61,7 @@ const createNewSubCategory = async (dataReq) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -71,7 +71,7 @@ const updateSubCategory = async (id, dataReq) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -81,7 +81,7 @@ const deleteSubCategory = async (id) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 //#endregion

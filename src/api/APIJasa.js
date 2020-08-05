@@ -6,9 +6,11 @@ const getAllJasa = async () => {
     try {
         const data = await axios.get(`${base_url}/jasa`)
 
+        console.log(data)
         return data
     } catch (error) {
-        return error.message
+        console.log(JSON.parse(JSON.stringify(error)))
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -19,7 +21,7 @@ const createNewJasa = async (bodyRaw) => {
         return data
     } catch (error) {
         console.log(JSON.parse(JSON.stringify(error)))
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -29,7 +31,7 @@ const updateJasa = async (jasaId, bodyRaw) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -39,7 +41,7 @@ const deleteJasa = async (jasaId) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 

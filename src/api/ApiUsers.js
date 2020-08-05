@@ -8,7 +8,7 @@ const getAllUser = async () => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -19,7 +19,7 @@ const getUserById = async (user_id) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -29,7 +29,7 @@ const createNewUser = async (bodyRaw) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -39,7 +39,7 @@ const updateUser = async (user_id, bodyRaw) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -49,7 +49,7 @@ const deleteUser = async (user_id) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
@@ -60,7 +60,7 @@ const updateAsAdmin = async (bodyRaw) => {
 
         return data
     } catch (error) {
-        return error.message
+        return JSON.parse(JSON.stringify(error))
     }
 }
 
