@@ -79,7 +79,7 @@ class Login extends React.Component {
 					localStorage.setItem('auth', JSON.stringify(res.data.data))
 					this.props.history.push('/')
 				}else{
-					alert("Only administrator can access this site!")
+					alert("Only administrator can login and access this site!")
 				}
 			}
 		}else{
