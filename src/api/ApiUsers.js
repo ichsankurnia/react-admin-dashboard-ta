@@ -2,6 +2,17 @@ import { base_url } from "./ObjectApi";
 import axios from "axios";
 
 
+const postAuth = async (bodyRaw) => {
+    try {
+        const data = await axios.post(`${base_url}/auth`, bodyRaw)
+
+        return data
+    } catch (error) {
+        return JSON.parse(JSON.stringify(error))
+    }
+}
+
+
 const getAllUser = async () => {
     try {
         const data = await axios.get(`${base_url}/user`)
@@ -15,7 +26,13 @@ const getAllUser = async () => {
 
 const getUserById = async (user_id) => {
     try {
-        const data = await axios.get(`${base_url}/user/${user_id}`)
+        const data = await axios.get(`${base_url}/user/${user_id}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
@@ -65,6 +82,7 @@ const updateAsAdmin = async (bodyRaw) => {
 }
 
 export {
+    postAuth,
     getAllUser,
     getUserById,
     createNewUser,
