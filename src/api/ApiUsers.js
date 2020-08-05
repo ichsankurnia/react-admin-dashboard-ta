@@ -15,7 +15,13 @@ const postAuth = async (bodyRaw) => {
 
 const getAllUser = async () => {
     try {
-        const data = await axios.get(`${base_url}/user`)
+        const data = await axios.get(`${base_url}/user`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
@@ -52,7 +58,13 @@ const createNewUser = async (bodyRaw) => {
 
 const updateUser = async (user_id, bodyRaw) => {
     try {
-        const data = await axios.put(`${base_url}/user/${user_id}`, bodyRaw)
+        const data = await axios.put(`${base_url}/user/${user_id}`, bodyRaw, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
@@ -62,7 +74,13 @@ const updateUser = async (user_id, bodyRaw) => {
 
 const deleteUser = async (user_id) => {
     try {
-        const data = await axios.delete(`${base_url}/user/${user_id}`)
+        const data = await axios.delete(`${base_url}/user/${user_id}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
@@ -73,7 +91,13 @@ const deleteUser = async (user_id) => {
 
 const updateAsAdmin = async (bodyRaw) => {
     try {
-        const data = await axios.post(`${base_url}/super-user`, bodyRaw)
+        const data = await axios.post(`${base_url}/super-user`, bodyRaw, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {

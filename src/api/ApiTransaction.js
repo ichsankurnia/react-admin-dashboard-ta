@@ -4,7 +4,13 @@ import axios from "axios";
 
 const getAllBooking = async () => {
     try {
-        const data = axios.get(`${base_url}/booking-list`)
+        const data = axios.get(`${base_url}/booking-list`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
@@ -14,7 +20,13 @@ const getAllBooking = async () => {
 
 const getBookingListByUserId = async (userId) => {
     try {
-        const data = axios.get(`${base_url}/booking-list/${userId}`)
+        const data = axios.get(`${base_url}/booking-list/${userId}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
@@ -24,7 +36,13 @@ const getBookingListByUserId = async (userId) => {
 
 const getBookingByInvoice = async (invoiceNo) => {
     try {
-        const data = axios.get(`${base_url}/booking-detail/${invoiceNo}`)
+        const data = axios.get(`${base_url}/booking-detail/${invoiceNo}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
@@ -35,7 +53,13 @@ const getBookingByInvoice = async (invoiceNo) => {
 
 const updatePaymentStatus = async (bodyRaw) => {
     try {
-        const data = axios.post(`${base_url}/booking-update-status`, bodyRaw)
+        const data = axios.post(`${base_url}/booking-update-status`, bodyRaw, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
@@ -46,7 +70,13 @@ const updatePaymentStatus = async (bodyRaw) => {
 
 const getAllConfirmPayment = async() => {
     try {
-        const data = axios.get(`${base_url}/confirm-payment-list`)
+        const data = axios.get(`${base_url}/confirm-payment-list`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
@@ -56,7 +86,13 @@ const getAllConfirmPayment = async() => {
 
 const getConfirmPaymentByInvoice = async (invoiceNo) => {
     try {
-        const data = axios.get(`${base_url}/confirm-payment-detail/${invoiceNo}`)
+        const data = axios.get(`${base_url}/confirm-payment-detail/${invoiceNo}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
@@ -67,7 +103,13 @@ const getConfirmPaymentByInvoice = async (invoiceNo) => {
 
 const getAllTransactionComplete = async () => {
     try {
-        const data = axios.get(`${base_url}/transaction-complate-list`)
+        const data = axios.get(`${base_url}/transaction-complate-list`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
@@ -77,7 +119,13 @@ const getAllTransactionComplete = async () => {
 
 const getTransactionCompleteListByUserId = async (userId) => {
     try {
-        const data = axios.get(`${base_url}/transaction-complate-list/${userId}`)
+        const data = axios.get(`${base_url}/transaction-complate-list/${userId}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
@@ -87,7 +135,13 @@ const getTransactionCompleteListByUserId = async (userId) => {
 
 const getTransactionCompleteByInvoice = async (invoiceNo) => {
     try {
-        const data = axios.get(`${base_url}/transaction-complate-detail/${invoiceNo}`)
+        const data = axios.get(`${base_url}/transaction-complate-detail/${invoiceNo}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
 
         return data
     } catch (error) {
