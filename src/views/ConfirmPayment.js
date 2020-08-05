@@ -75,13 +75,20 @@ class ConfirmPayment extends React.Component{
     handleGetConfirmPaymentList = async () => {
         const res = await getAllConfirmPayment()
         
+        console.log("Get All ConfirmPayment :", res)
+
         if(res.data){
-            this.setState({dataConfirmPayment : res.data.data})
+            if(res.data.code !== 0){
+                alert(res.data.message)
+                if(res.data.code === 99){
+                    localStorage.clear()
+                }
+            }else{
+                this.setState({dataConfirmPayment : res.data.data})
+            }
         }else{
             alert(res.message)
         }
-        
-        console.log("Get All ConfirmPayment :", res)
     }
 
 
@@ -163,7 +170,7 @@ class ConfirmPayment extends React.Component{
                                     </thead>
                                     <tbody>
                                         {
-                                            this.state.dataConfirmPayment.length !== 0 || this.state.dataConfirmPayment !== null || this.state.dataConfirmPayment !== undefined? 
+                                            this.state.dataConfirmPayment !== null? 
                                                 this.state.dataConfirmPayment.map((data, key) => {
                                                     return <TableRow key={key} 
                                                                         getData={data}

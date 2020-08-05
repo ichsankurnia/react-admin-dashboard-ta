@@ -88,13 +88,20 @@ class Users extends React.Component{
     handleGetAllUser = async () => {
         const res = await getAllUser()
         
-        if(res.data){
-            this.setState({dataUser : res.data.data})
-        }else{
-            alert(res)
-        }
-        
         console.log("Get All User :", res)
+        
+        if(res.data){
+            if(res.data.code !== 0){
+                alert(res.data.message)
+                if(res.data.code === 99){
+                    localStorage.clear()
+                }
+            }else{
+                this.setState({dataUser : res.data.data})
+            }
+        }else{
+            alert(res.message)
+        }
     }
 
 
@@ -211,7 +218,7 @@ class Users extends React.Component{
                                     </thead>
                                     <tbody>
                                         {
-                                            this.state.dataUser.length !== 0 || this.state.dataUser !== null || this.state.dataUser !== undefined? 
+                                            this.state.dataUser !== null? 
                                                 this.state.dataUser.map((data, key) => {
                                                     return <TableRow key={key} 
                                                                         getData={data}

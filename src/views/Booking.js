@@ -59,7 +59,7 @@ class Booking extends React.Component{
         this.state = {
             showModalDetail : false,
 
-            dataBooking: [],
+            dataBooking: null,
             dataBookingByInvoice: null,
             name: "",
             username: "",
@@ -75,14 +75,20 @@ class Booking extends React.Component{
     handleGetBookingList = async () => {
         const res = await getAllBooking()
         
-        console.log(res)
+        console.log("Get All Booking :", res)
+        
         if(res.data){
-            this.setState({dataBooking : res.data.data})
+            if(res.data.code !== 0){
+                alert(res.data.message)
+                if(res.data.code === 99){
+                    localStorage.clear()
+                }
+            }else{
+                this.setState({dataBooking : res.data.data})
+            }
         }else{
             alert(res.message)
         }
-        
-        console.log("Get All Booking :", res)
     }
 
 
@@ -153,7 +159,7 @@ class Booking extends React.Component{
                                     </thead>
                                     <tbody>
                                         {
-                                            this.state.dataBooking.length !== 0 || this.state.dataBooking !== null || this.state.dataBooking !== undefined? 
+                                            this.state.dataBooking !== null? 
                                                 this.state.dataBooking.map((data, key) => {
                                                     return <TableRow key={key} 
                                                                         getData={data}

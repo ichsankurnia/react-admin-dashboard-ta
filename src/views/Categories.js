@@ -159,7 +159,7 @@ class Categories extends React.Component{
         super(props)
 
         this.state = {
-			dataTable : [],
+			dataTable : null,
 
 			category_id : 0,
 			category_name : "",
@@ -183,14 +183,21 @@ class Categories extends React.Component{
 
 	handleGetCategory = async () => {
 		const res = await getCategory()
-
-		if(res.data){
-			this.setState({dataTable: res.data.data})
-		}else{
-			alert(res)
-		}
-
+		
 		console.log("Get Category :", res)
+		
+		if(res.data){
+            if(res.data.code !== 0){
+                alert(res.data.message)
+                if(res.data.code === 99){
+                    localStorage.clear()
+                }
+            }else{
+                this.setState({dataTable : res.data.data})
+            }
+        }else{
+            alert(res.message)
+		}
 	}
 
 
@@ -310,7 +317,7 @@ class Categories extends React.Component{
 
                     {/* Table Content */}
 					{
-						this.state.dataTable.length !== 0 || this.state.dataTable !== null || this.state.dataTable !== undefined?
+						this.state.dataTable !== null?
 							this.state.dataTable.map((data) => {
 								return <TableContent 
 											getData={data}

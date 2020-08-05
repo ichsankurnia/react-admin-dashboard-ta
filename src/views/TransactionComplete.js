@@ -89,13 +89,20 @@ class TransactionComplete extends React.Component{
     handleGetTransactionCompleteList = async () => {
         const res = await getAllTransactionComplete()
         
+        console.log("Get All TransactionComplete :", res)
+        
         if(res.data){
-            this.setState({dataTransactionComplete : res.data.data})
+            if(res.data.code !== 0){
+                alert(res.data.message)
+                if(res.data.code === 99){
+                    localStorage.clear()
+                }
+            }else{
+                this.setState({dataTransactionComplete : res.data.data})
+            }
         }else{
             alert(res.message)
         }
-        
-        console.log("Get All TransactionComplete :", res)
     }
 
 
@@ -156,7 +163,7 @@ class TransactionComplete extends React.Component{
                                     </thead>
                                     <tbody>
                                         {
-                                            this.state.dataTransactionComplete.length !== 0 || this.state.dataTransactionComplete !== null || this.state.dataTransactionComplete !== undefined? 
+                                            this.state.dataTransactionComplete !== null? 
                                                 this.state.dataTransactionComplete.map((data, key) => {
                                                     return <TableRow key={key} 
                                                                         getData={data}

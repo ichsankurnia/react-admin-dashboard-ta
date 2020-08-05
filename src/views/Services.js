@@ -73,8 +73,8 @@ class Services extends React.Component{
         this.state = {
             showModalAddJasa : false,
 
-            dataSubCate : [],
-            dataJasa : [],
+            dataSubCate : null,
+            dataJasa : null,
             subCategoryId : 0,
             jasaId : 0,
             jasaName: '',
@@ -92,13 +92,21 @@ class Services extends React.Component{
     handleGetAllJasa = async () => {
         const res = await getAllJasa()
 
+        console.log('Get All Jasa : ', res)
+        
         if(res.data){
-            this.setState({dataJasa : res.data.data})
+            if(res.data.code !== 0){
+                alert(res.data.message)
+                if(res.data.code === 99){
+                    localStorage.clear()
+                }
+            }else{
+                this.setState({dataJasa : res.data.data})
+            }
         }else{
-            alert(res)
+            alert(res.message)
         }
 
-        console.log('Get All Jasa : ', res)
     }
 
 
@@ -167,6 +175,7 @@ class Services extends React.Component{
         this.setState({
             showModalAddJasa: false, isUpdateCate: false,
             subCategoryId: 0, jasaId: 0, jasaName: "", jasaDesc: "", jasaPrice: 0,
+            dataSubCate: null
         })
     }
 
@@ -199,7 +208,7 @@ class Services extends React.Component{
                                     </thead>
                                     <tbody>
                                         {
-                                            this.state.dataJasa.length !== 0 || this.state.dataJasa !== null || this.state.dataJasa !== undefined? 
+                                            this.state.dataJasa !== null? 
                                                 this.state.dataJasa.map((data, key) => {
                                                     return <TableRow key={key} 
                                                                         getData={data}
@@ -264,21 +273,21 @@ class Services extends React.Component{
                             <Input type="number" name="desc" id="examplePassword" value={this.state.jasaPrice} onChange={e => this.setState({jasaPrice: e.target.value})} />
                         </FormGroup>
                         {
-                            !this.state.isUpdateJasa?
-                                <FormGroup style={{display: 'flex', flexDirection: 'column'}}>
-                                    <Label for="exampleSelect">Select Sub Category</Label>
-                                    {/* <Input type="select" name="select" id="exampleSelect" onChange={(e) => console.log(e.target.value)} value={this.state.subCategoryId}> */}
-                                    <select name="select" id="exampleSelect" onChange={(e) => this.setState({subCategoryId: e.target.value})}
-                                    style={{marginTop: 3, borderRadius: 5, borderColor: '#ccc', height: 45}}>
-                                        {
-                                            this.state.dataSubCate !== [] || this.state.dataSubCate !== null || this.state.dataSubCate.length > 0?
-                                                this.state.dataSubCate.map((data, key) => {
-                                                    return <option key={key} value={data.sub_category_id}>{data.sub_category_name}</option>
-                                                }) : null
-                                        }
-                                    </select>
-                                    {/* </Input> */}
-                                </FormGroup> : null
+                            // !this.state.isUpdateJasa?
+                            //     <FormGroup style={{display: 'flex', flexDirection: 'column'}}>
+                            //         <Label for="exampleSelect">Select Sub Category</Label>
+                            //         {/* <Input type="select" name="select" id="exampleSelect" onChange={(e) => console.log(e.target.value)} value={this.state.subCategoryId}> */}
+                            //         <select name="select" id="exampleSelect" onChange={(e) => this.setState({subCategoryId: e.target.value})}
+                            //         style={{marginTop: 3, borderRadius: 5, borderColor: '#ccc', height: 45}}>
+                            //             {
+                            //                 this.state.dataSubCate !== [] || this.state.dataSubCate !== null || this.state.dataSubCate.length > 0?
+                            //                     this.state.dataSubCate.map((data, key) => {
+                            //                         return <option key={key} value={data.sub_category_id}>{data.sub_category_name}</option>
+                            //                     }) : null
+                            //             }
+                            //         </select>
+                            //         {/* </Input> */}
+                            //     </FormGroup> : null
 
                         }
                     </ModalBody>
