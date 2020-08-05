@@ -8,6 +8,8 @@ import AuthNavbar from "../components/Navbars/AuthNavbar.js";
 import AuthFooter from "../components/Footers/AuthFooter.js";
 
 import routes from "../routes.js";
+import Login from "../views/examples/Login.js";
+import Register from "../views/examples/Register.js";
 
 class Auth extends React.Component {
 
@@ -65,7 +67,10 @@ class Auth extends React.Component {
 						<Row className="justify-content-center">
 							<Switch>
 								{/* MAIN ROUTE */}
-								{this.getRoutes(routes)}
+								{/* {this.getRoutes(routes)} */}
+								<Route path='/auth/login' component={Login} />
+								<Route path='/auth/register' component={Register} />
+
 								<Redirect from="*" to="/auth/login" />
 							</Switch>
 						</Row>

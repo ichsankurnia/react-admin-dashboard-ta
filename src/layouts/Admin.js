@@ -33,6 +33,12 @@ class Admin extends React.Component {
 					localStorage.clear()
 					this.props.history.push('/auth/login')
 				}
+			}else{
+				if(!res.data.data.is_admin){
+					alert('You now no longer as admin, please contact the administrator to access this site')
+					localStorage.clear()
+					this.props.history.push('/auth/login')
+				}
 			}
         }else{
             alert(res.message)
