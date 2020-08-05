@@ -8,8 +8,37 @@ import AdminFooter from "../components/Footers/AdminFooter.js";
 import Sidebar from "../components/Sidebar/Sidebar.js";
 
 import routes from "../routes.js";
+import { getUserById } from "../api/ApiUsers.js";
 
 class Admin extends React.Component {
+
+	componentDidMount(){
+		if(localStorage.getItem('auth') === null){
+			this.props.history.push('/auth/login')
+		}else{
+			this.handleGetUserByID()
+		}
+	}
+
+	handleGetUserByID = async () => {
+		const userId = await JSON.parse(localStorage.getItem('auth')).user_id
+		const res = await getUserById(userId)
+
+		console.log("Get User by ID :", res)
+        
+        if(res.data){
+            if(res.data.code !== 0){
+                alert(res.data.message)
+                if(res.data.code === 99){
+					localStorage.clear()
+					this.props.history.push('/auth/login')
+				}
+			}
+        }else{
+            alert(res.message)
+        }
+	}
+
 	componentDidUpdate(e) {
 		document.documentElement.scrollTop = 0;
 		document.scrollingElement.scrollTop = 0;
