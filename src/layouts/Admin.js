@@ -11,6 +11,13 @@ import routes from "../routes.js";
 import { getUserById } from "../api/ApiUsers.js";
 
 class Admin extends React.Component {
+	constructor(props){
+		super(props)
+
+		this.state = {
+			dataUser : null
+		}
+	}
 
 	componentDidMount(){
 		if(localStorage.getItem('auth') === null){
@@ -25,6 +32,7 @@ class Admin extends React.Component {
 		const res = await getUserById(userId)
 
 		console.log("Get User by ID :", res)
+		console.log("Profil :", res.data.data.Profil)
         
         if(res.data){
             if(res.data.code !== 0){
@@ -38,6 +46,8 @@ class Admin extends React.Component {
 					alert('You now no longer as admin, please contact the administrator to access this site')
 					localStorage.clear()
 					this.props.history.push('/auth/login')
+				}else{
+					this.setState({dataUser: res.data.data})
 				}
 			}
         }else{
@@ -64,9 +74,12 @@ class Admin extends React.Component {
 		});
 	}
 
-	getBrandText = (path) => {
+	getNavTitle = () => {
+		const locatPath = this.props.location.pathname
+		console.log("path :", locatPath)
+		
 		for (let i = 0; i < routes.length; i++) {
-			if ( this.props.location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
+			if ( locatPath.indexOf(routes[i].layout + routes[i].path) !== -1) {
 				return routes[i].name;
 			}
 		}
@@ -75,6 +88,7 @@ class Admin extends React.Component {
 
 	
 	render() {
+		const {dataUser} = this.state
 		return (
 			<>
 				<Sidebar {...this.props} routes={routes}
@@ -85,10 +99,15 @@ class Admin extends React.Component {
 					}}
 				/>
 				<div className="main-content" ref="mainContent">
-					<AdminNavbar
-						{...this.props}
-						brandText={this.getBrandText(this.props.location.pathname)}
-					/>
+					{
+						dataUser !== null ?
+							<AdminNavbar {...this.props}
+								navTitle={this.getNavTitle()} nameUser={dataUser.name} imgUser={dataUser.Profil !== null? dataUser.Profil.user_img : require('../assets/img/theme/sketch.jpg')}
+							/> : 
+							<AdminNavbar {...this.props}
+								navTitle={this.getNavTitle()} nameUser="User" imgUser={require('../assets/img/theme/team-3-800x800.jpg')}
+							/>
+						}
 					<Switch>
 						{/* MAIN ROUTE */}
 						{this.getRoutes(routes)}
