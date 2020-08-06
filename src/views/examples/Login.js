@@ -52,7 +52,11 @@ class Login extends React.Component {
 					localStorage.clear()
                 }
             }else{
-                this.props.history.push('/')
+				if(!res.data.data.is_admin){
+					localStorage.clear()
+				}else{
+					this.props.history.push('/')
+				}
             }
         }else{
             alert(res.message)
