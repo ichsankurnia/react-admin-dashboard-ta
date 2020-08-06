@@ -16,6 +16,7 @@ class Login extends React.Component {
                   <a
                     className="font-weight-bold ml-1"
                     href="https://goes2nobel.com"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
                     Goes2Nobel
@@ -27,6 +28,7 @@ class Login extends React.Component {
                   <NavItem>
                     <NavLink
                       href="https://goes2nobel.com"
+                      rel="noopener noreferrer"
                       target="_blank"
                     >
                       Goes2Nobel
