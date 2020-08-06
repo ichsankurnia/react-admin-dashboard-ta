@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import "./assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -12,15 +12,14 @@ import AuthLayout from "./layouts/Auth.js";
 
 const App = (props) => {
 	return (
-		<BrowserRouter>
+		<HashRouter>
 			<Switch>
 				<Route path="/admin" render={props => <AdminLayout {...props} />} />
 				<Route path="/auth" render={props => <AuthLayout {...props} />} />
 				<Redirect from="/" to="/admin/index" />
 			</Switch>
-		</BrowserRouter>
+		</HashRouter>
 	)
 }
 
-ReactDOM.render(<App />, document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));
