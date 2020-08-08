@@ -36,7 +36,7 @@ class Login extends React.Component {
                   </NavItem>
                   <NavItem>
                     <NavLink
-                      href="https://www.creative-tim.com/presentation?ref=adr-auth-footer"
+                      href="https://darkyasha.goes2nobel.com/"
                       target="_blank"
                     >
                       About Us
@@ -44,7 +44,7 @@ class Login extends React.Component {
                   </NavItem>
                   <NavItem>
                     <NavLink
-                      href="http://blog.creative-tim.com?ref=adr-auth-footer"
+                      href="https://darkyasha.goes2nobel.com/"
                       target="_blank"
                     >
                       Blog
@@ -52,7 +52,7 @@ class Login extends React.Component {
                   </NavItem>
                   <NavItem>
                     <NavLink
-                      href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md?ref=adr-auth-footer"
+                      href="https://github.com/ichsankurnia/React-Dashboard-Argon-Template/blob/master/LICENSE"
                       target="_blank"
                     >
                       MIT License
