@@ -68,7 +68,7 @@ function Header() {
 										<Row>
 											<div className="col">
 												<CardTitle tag="h5" className="text-uppercase text-muted mb-0">Traffic</CardTitle>
-												<span className="h2 font-weight-bold mb-0">{gntCorrectBill("3508970000")}</span>
+												<span className="h2 font-weight-bold mb-0">{gntCorrectBill("35089700")}</span>
 											</div>
 											<Col className="col-auto">
 												<div className="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -136,7 +136,7 @@ function Header() {
 									<CardBody>
 										<Row>
 											<div className="col">
-												<CardTitle tag="h5" className="text-uppercase text-muted mb-0">Complete Transactions</CardTitle>
+												<CardTitle tag="h6" className="text-uppercase text-muted mb-0">Complete Transactions</CardTitle>
 												<span className="h2 font-weight-bold mb-0">{gntCorrectBill(traxComplete)}</span>
 											</div>
 											<Col className="col-auto">
