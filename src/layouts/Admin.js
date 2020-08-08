@@ -96,6 +96,7 @@ class Admin extends React.Component {
 						imgSrc: require("./../assets/img/brand/argon-react.png"),
 						imgAlt: "..."
 					}}
+					userImg={dataUser !== null? dataUser.Profil !== null? dataUser.Profil.user_img : require('../assets/img/theme/sketch.jpg') : require('../assets/img/theme/sketch.jpg')}
 				/>
 				<div className="main-content" ref="mainContent">
 					{
