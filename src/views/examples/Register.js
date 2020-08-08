@@ -98,10 +98,10 @@ class Register extends React.Component {
 				<Col lg="6" md="8">
 					<Card className="bg-secondary shadow border-0">
 						<CardHeader className="bg-transparent pb-5">
-							<div className="text-muted text-center mt-2 mb-4">
-								<small>Sign up with</small>
+							<div className="text-muted text-center mt-1">
+								<h1>Register</h1>
 							</div>
-							<div className="text-center">
+							{/* <div className="text-center">
 								<Button className="btn-neutral btn-icon mr-4" color="default" href="#pablo" onClick={e => e.preventDefault()} >
 									<span className="btn-inner--icon">
 										<img alt="..." src={require("../../assets/img/icons/common/github.svg")} />
@@ -114,12 +114,12 @@ class Register extends React.Component {
 									</span>
 									<span className="btn-inner--text">Google</span>
 								</Button>
-							</div>
+							</div> */}
 						</CardHeader>
-						<CardBody className="px-lg-5 py-lg-5">
-							<div className="text-center text-muted mb-4">
+						<CardBody className="px-lg-5 py-lg-2">
+							{/* <div className="text-center text-muted mb-4">
 								<small>Or sign up with credentials</small>
-							</div>
+							</div> */}
 							<Form role="form">
 								<FormGroup>
 									<InputGroup className="input-group-alternative mb-3">
@@ -179,7 +179,7 @@ class Register extends React.Component {
 										</div>
 									</Col>
 								</Row>
-								<div className="text-center">
+								<div className="text-center" style={{marginBottom: 40}}>
 									{
 										this.state.agree?
 										<Button className="mt-4" color="primary" type="button" onClick={this.handleRegisterAccount}>
