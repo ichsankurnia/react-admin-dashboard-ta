@@ -32,7 +32,6 @@ class Admin extends React.Component {
 		const res = await getUserById(userId)
 
 		console.log("Get User by ID :", res)
-		console.log("Profil :", res.data.data.Profil)
         
         if(res.data){
             if(res.data.code !== 0){
@@ -105,7 +104,7 @@ class Admin extends React.Component {
 								navTitle={this.getNavTitle()} nameUser={dataUser.name} imgUser={dataUser.Profil !== null? dataUser.Profil.user_img : require('../assets/img/theme/sketch.jpg')}
 							/> : 
 							<AdminNavbar {...this.props}
-								navTitle={this.getNavTitle()} nameUser="User" imgUser={require('../assets/img/theme/team-3-800x800.jpg')}
+								navTitle={this.getNavTitle()} nameUser="User" imgUser={require('../assets/img/theme/sketch.jpg')}
 							/>
 						}
 					<Switch>
