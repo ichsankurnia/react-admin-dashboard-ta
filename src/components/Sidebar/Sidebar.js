@@ -70,16 +70,20 @@ class Sidebar extends React.Component {
 	};
 
 
-	handleLogout = () => {
-		// localStorage.clear()
+	handleLogout = async () => {
+		const confirm = await window.confirm("Are you sure to logout?")
 
-		return "/auth/login"
+		if(confirm){
+			localStorage.clear()
+
+			this.props.history.push('/auth')
+		}
 	}
 
 
 	render() {
 		// const { routes, logo } = this.props;
-		const { logo } = this.props;
+		const { logo, userImg } = this.props;
 		let navbarBrandProps;
 
 		if (logo && logo.innerLink) {
@@ -95,29 +99,18 @@ class Sidebar extends React.Component {
 		}
 
 		return (
-			<Navbar
-				className="navbar-vertical fixed-left navbar-light bg-white"
-				expand="md"
-				id="sidenav-main"
-			>
+			<Navbar className="navbar-vertical fixed-left navbar-light bg-white" expand="md" id="sidenav-main">
 				<Container fluid>
+
 					{/* Toggler jika dahsboard dalam phone mode*/}
-					<button
-						className="navbar-toggler"
-						type="button"
-						onClick={this.toggleCollapse}
-					>
+					<button className="navbar-toggler" type="button" onClick={this.toggleCollapse}>
 						<span className="navbar-toggler-icon" />
 					</button>
 					
 					{/* Brand Logo Dashboard*/}
 					{logo ? (
 						<NavbarBrand className="pt-0" {...navbarBrandProps}>
-							<img
-								alt={logo.imgAlt}
-								className="navbar-brand-img"
-								src={logo.imgSrc}
-							/>
+							<img alt={logo.imgAlt} className="navbar-brand-img" src={logo.imgSrc}/>
 						</NavbarBrand>
 					) : null}
 
@@ -148,10 +141,7 @@ class Sidebar extends React.Component {
 							<DropdownToggle nav>
 								<Media className="align-items-center">
 									<span className="avatar avatar-sm rounded-circle">
-										<img
-											alt="..."
-											src={require("../../assets/img/theme/team-1-800x800.jpg")}
-										/>
+										<img alt="..." src={userImg}/>
 									</span>
 								</Media>
 							</DropdownToggle>
@@ -177,7 +167,7 @@ class Sidebar extends React.Component {
 									<span>Support</span>
 								</DropdownItem>
 								<DropdownItem divider />
-								<DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+								<DropdownItem href="#pablo" onClick={this.handleLogout}>
 									<i className="ni ni-user-run" />
 									<span>Logout</span>
 								</DropdownItem>
@@ -243,7 +233,7 @@ class Sidebar extends React.Component {
 
 							{/* LOGOUT */}
 							<NavItem>
-								<NavLink to={this.handleLogout}  tag={NavLinkRRD} onClick={() => localStorage.clear()} >
+								<NavLink onClick={this.handleLogout} className="text-hover" >
 									<i className='ni ni-button-power text-black' />
 									Logout
 								</NavLink>
