@@ -27,7 +27,9 @@ function Header() {
 		const res = await getAllUser()
 
 		if(res.data){
-			setUser(res.data.data.length)
+			if(res.data.data){
+				setUser(res.data.data.length)
+			}
 		}
 	}
 
@@ -35,7 +37,9 @@ function Header() {
 		const res = await getAllBooking()
 
 		if(res.data){
-			setBooking(res.data.data.length)
+			if(res.data.data){
+				setBooking(res.data.data.length)
+			}
 		}
 	}
 
@@ -43,7 +47,9 @@ function Header() {
 		const res = await getAllTransactionComplete()
 
 		if(res.data){
-			setTraxComplete(res.data.data.length)
+			if(res.data.data){
+				setTraxComplete(res.data.data.length)
+			}
 		}
 	}
 	
