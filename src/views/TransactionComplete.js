@@ -35,7 +35,7 @@ const TableRow = (props) => {
                 </span>
             </td>
             <td>{props.getData.ConPayment.payment_method}</td>
-            <td>{props.getData.ConPayment.payment_date}</td>
+            <td>{props.getData.ConPayment.payment_date.toString().substring(0,10)}</td>
 			<td>
                 <Media className="align-items-center">
 					<a href={props.getData.ConPayment.img_pay}>
