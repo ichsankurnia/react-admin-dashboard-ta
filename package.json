@@ -9,12 +9,14 @@
     "reactjs",
     "argon",
     "argon-react",
+    "cms",
+    "content-management-system",
     "dashboard",
     "dashboard-react",
     "argon-dashboard",
     "argon-dashboard-react"
   ],
-  "author": "Creative Tim",
+  "author": "ichsankurnia",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/creativetimofficial/argon-dashboard-react/issues"
