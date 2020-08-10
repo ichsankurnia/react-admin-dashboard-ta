@@ -17,8 +17,16 @@ import { Container, Row, Button, Modal,
 } from "reactstrap";
 
 import Header from "../components/Headers/Header";
-import { getAllTransactionComplete } from "../api/ApiTransaction";
-import { getTransactionCompleteByInvoice } from "../api/ApiTransaction";
+
+// API
+import { 
+    getAllTransactionComplete, 
+    getTransactionCompleteListByUserId, 
+    getTransactionCompleteByInvoice 
+} from "../api/ApiTransaction";
+
+// Image
+import NoPhoto from "../assets/img/theme/nophoto.png"
 
 
 // Table Row
@@ -27,7 +35,9 @@ const TableRow = (props) => {
 		// <tr onClick={() => props.onClickRow(props.getData.invoice_no)} className="custom-row">
 		<tr>
 			<th scope="row">#{props.getData.invoice_no}</th>
-            <td>{props.getData.User.name}</td>
+            <td>
+                <span className="icon-hover" onClick={() => props.onClickListUser(props.getData.User.user_id)}>{props.getData.User.name}</span>
+            </td>
             <td>{props.getData.User.email}</td>
 			<td>
                 <span style={{fontWeight: 'bolder', color: props.getData.Booking.payment_status === "PAID"? '#0f0' : '#f22'}}>
@@ -74,6 +84,7 @@ class TransactionComplete extends React.Component{
             showModalDetail : false,
 
             dataTransactionComplete: [],
+            listByUserId: null,
             dataTransactionCompleteByInvoice: null,
             name: "",
             username: "",
@@ -114,6 +125,17 @@ class TransactionComplete extends React.Component{
         this.setState({dataTransactionCompleteByInvoice: res.data.data, showModalDetail: true}, () => {
             console.log(this.state.dataTransactionCompleteByInvoice.Booking.Jasa.Sub_category)
         })
+    }
+
+
+    handleGetTraxCompleteByUserId = async(userId) => {
+        const res = await getTransactionCompleteListByUserId(userId)
+
+        console.log("List Transaction Complete By UserID :", res)
+
+        if(res.data){
+            this.setState({listByUserId: res.data.data})
+        }
     }
 
 
@@ -167,6 +189,7 @@ class TransactionComplete extends React.Component{
                                                 this.state.dataTransactionComplete.map((data, key) => {
                                                     return <TableRow key={key} 
                                                                         getData={data}
+                                                                        onClickListUser={this.handleGetTraxCompleteByUserId}
                                                                         onClickUpdatePayment={this.handleUpdatePaymentStatus} 
                                                                         onClickDetail={this.handleDetailTransactionComplete} />
                                                 }): null
@@ -209,6 +232,92 @@ class TransactionComplete extends React.Component{
                             </Card>
                         </div>
 					</Row>
+
+                    {/* LIST TRANSACTION COMPLETE BY USER ID */}
+                    {
+                        this.state.listByUserId?
+                        <Row className="mt-6">
+                            <div className="col">
+                                <h3>Transaction Complete List By User ID {this.state.listByUserId[0].User.user_id}</h3>
+                                <Card className="shadow">
+                                    <CardHeader className="border-0">
+                                        <Media className="align-items-center">
+                                            <a className="avatar rounded-circle mr-3" href={this.state.listByUserId[0].User.Profil.user_img !== null? this.state.listByUserId[0].User.Profil.user_img : null}>
+                                                <img alt="..." src={this.state.listByUserId[0].User.Profil.user_img !== null? this.state.listByUserId[0].User.Profil.user_img : NoPhoto}/>
+                                            </a>
+                                            <Media><span className="mb-0 text-sm">{this.state.listByUserId[0].User.name}</span></Media>
+                                        </Media>
+                                    </CardHeader>
+                                    <Table className="align-items-center table-flush" responsive>
+                                        <thead className="thead-light">
+                                            <tr>
+                                            <th scope="col"># Invoice</th>
+                                            <th scope="col">User</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Payment Status</th>
+                                            <th scope="col">Payment Method</th>
+                                            <th scope="col">Confirm Date</th>
+                                            <th scope="col">Confirm Image</th>
+                                            <th scope="col">Booking Date</th>
+                                            <th scope="col">Service</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Sub Category</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col" />
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                this.state.listByUserId !== null? 
+                                                    this.state.listByUserId.map((data, key) => {
+                                                        return <TableRow key={key} 
+                                                                            getData={data}
+                                                                            onClickListUser={() => alert("User ID : " + data.User.user_id + "\nName : " + data.User.name)}
+                                                                            onClickUpdatePayment={this.handleUpdatePaymentStatus} 
+                                                                            onClickDetail={this.handleDetailTransactionComplete} />
+                                                    }): null
+                                            }
+                                        </tbody>
+                                    </Table>
+                                    <CardFooter className="py-4">
+                                        <nav aria-label="...">
+                                            <Pagination className="pagination justify-content-end mb-0" listClassName="justify-content-end mb-0">
+                                                <PaginationItem className="disabled">
+                                                    <PaginationLink href="#pablo" onClick={e => e.preventDefault()} tabIndex="-1">
+                                                        <i className="fas fa-angle-left" />
+                                                        <span className="sr-only">Previous</span>
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                                <PaginationItem className="active">
+                                                    <PaginationLink href="#pablo" onClick={e => e.preventDefault()}>
+                                                        1
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                                <PaginationItem>
+                                                    <PaginationLink href="#pablo" onClick={e => e.preventDefault()}>
+                                                        2 <span className="sr-only">(current)</span>
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                                <PaginationItem>
+                                                    <PaginationLink href="#pablo" onClick={e => e.preventDefault()}>
+                                                        3
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                                <PaginationItem>
+                                                    <PaginationLink href="#pablo" onClick={e => e.preventDefault()}>
+                                                        <i className="fas fa-angle-right" />
+                                                        <span className="sr-only">Next</span>
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                            </Pagination>
+                                        </nav>
+                                    </CardFooter>
+                                </Card>
+                            </div>
+                        </Row>
+                        :
+                        null
+                    }
                 </Container>
 
                 {/* Modal Add New User */}
