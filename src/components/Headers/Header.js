@@ -10,7 +10,7 @@ import { getAllBooking, getAllTransactionComplete } from "../../api/ApiTransacti
 //Helper
 import { gntCorrectBill } from "../../helpers/helper";
 
-function Header() {
+function Header(props) {
 	const [user, setUser] = useState(0)
 	const [booking, setBooking] = useState(0)
 	const [traxComplete, setTraxComplete] = useState(0)
