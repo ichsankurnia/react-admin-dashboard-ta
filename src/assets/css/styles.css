@@ -33,3 +33,9 @@
     -o-transform:scale(12); /* Opera */
      transform:scale(12);
 }
+
+.stretch-img{
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
