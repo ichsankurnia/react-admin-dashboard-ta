@@ -87,9 +87,8 @@ function Profile (props) {
 		const resUser = await updateUser(userId, rawBodyUser)
 
 		const dataProfle = new FormData()
-		dataProfle.append('phone', phone)
+		dataProfle.append('phone', phone.toString())
 		dataProfle.append('user_img', userImg)
-		console.log(userImg)
 
 		const resProfile = await updateProfile(userId, dataProfle)
 
@@ -272,7 +271,7 @@ function Profile (props) {
 											<Col md="4">
 												<FormGroup>
 													<label className="form-control-label" htmlFor="input-phone" >Phone</label>
-													<Input className="form-control-alternative" type="number" id="input-phone" placeholder="08123456xxxx" readOnly
+													<Input className="form-control-alternative" type="text" id="input-phone" placeholder="08123456xxxx" readOnly
 													defaultValue={dataUser !== null? dataUser.Profil !== null? dataUser.Profil.phone : null : null} />
 												</FormGroup>
 											</Col>
