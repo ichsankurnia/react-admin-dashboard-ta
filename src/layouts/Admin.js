@@ -10,6 +10,8 @@ import Sidebar from "../components/Sidebar/Sidebar.js";
 import routes from "../routes.js";
 import { getUserById } from "../api/ApiUsers.js";
 
+import noPhoto from "../assets/img/theme/nophoto.png"
+
 class Admin extends React.Component {
 	constructor(props){
 		super(props)
@@ -96,16 +98,16 @@ class Admin extends React.Component {
 						imgSrc: require("./../assets/img/brand/argon-react.png"),
 						imgAlt: "..."
 					}}
-					userImg={dataUser !== null? dataUser.Profil !== null? dataUser.Profil.user_img : require('../assets/img/theme/sketch.jpg') : require('../assets/img/theme/sketch.jpg')}
+					userImg={dataUser !== null? dataUser.Profil.user_img !== null? dataUser.Profil.user_img : noPhoto : noPhoto}
 				/>
 				<div className="main-content" ref="mainContent">
 					{
 						dataUser !== null ?
 							<AdminNavbar {...this.props}
-								navTitle={this.getNavTitle()} nameUser={dataUser.name} imgUser={dataUser.Profil !== null? dataUser.Profil.user_img : require('../assets/img/theme/sketch.jpg')}
+								navTitle={this.getNavTitle()} nameUser={dataUser.name} imgUser={dataUser.Profil.user_img !== null? dataUser.Profil.user_img : noPhoto}
 							/> : 
 							<AdminNavbar {...this.props}
-								navTitle={this.getNavTitle()} nameUser="User" imgUser={require('../assets/img/theme/sketch.jpg')}
+								navTitle={this.getNavTitle()} nameUser="User" imgUser={noPhoto}
 							/>
 						}
 					<Switch>
