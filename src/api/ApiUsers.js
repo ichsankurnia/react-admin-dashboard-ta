@@ -105,6 +105,40 @@ const updateAsAdmin = async (bodyRaw) => {
     }
 }
 
+
+const updateProfile = async (userId, bodyRaw) => {
+    try {
+        const data = await axios.put(`${base_url}/update-profil/${userId}`, bodyRaw, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
+
+        return data
+    } catch (error) {
+        return JSON.parse(JSON.stringify(error))
+    }
+}
+
+const deleteProfilePicture = async (bodyRaw) => {
+    try {
+        const data = await axios.post(`${base_url}/delete-profil-picture/`, bodyRaw, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
+
+        return data
+    } catch (error) {
+        return JSON.parse(JSON.stringify(error))
+    }
+}
+
+
 export {
     postAuth,
     getAllUser,
@@ -112,5 +146,7 @@ export {
     createNewUser,
     updateUser,
     deleteUser,
-    updateAsAdmin
+    updateAsAdmin,
+    updateProfile,
+    deleteProfilePicture
 }
