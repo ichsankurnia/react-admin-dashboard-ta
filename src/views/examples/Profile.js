@@ -87,10 +87,11 @@ function Profile (props) {
 		const resUser = await updateUser(userId, rawBodyUser)
 
 		const dataProfle = new FormData()
+		dataProfle.append('user_id', userId)
 		dataProfle.append('phone', phone.toString())
 		dataProfle.append('user_img', userImg)
 
-		const resProfile = await updateProfile(userId, dataProfle)
+		const resProfile = await updateProfile(dataProfle)
 
 		console.log("Update UserProfile :", resUser, resProfile)
 
@@ -107,9 +108,10 @@ function Profile (props) {
 		const userId = await JSON.parse(localStorage.getItem('auth')).user_id
 
 		const data = new FormData()
+		data.append('user_id', userId)
 		data.append('user_img', userImg)
 
-		const res = await updateProfile(userId, data)
+		const res = await updateProfile(data)
 		console.log("Update Profile Pictue : ", res)
 
 		window.location.reload()

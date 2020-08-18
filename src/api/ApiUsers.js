@@ -106,9 +106,9 @@ const updateAsAdmin = async (bodyRaw) => {
 }
 
 
-const updateProfile = async (userId, bodyRaw) => {
+const updateProfile = async (bodyRaw) => {
     try {
-        const data = await axios.put(`${base_url}/update-profil/${userId}`, bodyRaw, {
+        const data = await axios.put(`${base_url}/update-profil/`, bodyRaw, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`,
                 Accept: "application/json",
