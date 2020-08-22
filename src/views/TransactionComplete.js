@@ -45,7 +45,7 @@ const TableRow = (props) => {
                 </span>
             </td>
             <td>{props.getData.ConPayment.payment_method}</td>
-            <td>{props.getData.ConPayment.payment_date.toString().substring(0,10)}</td>
+            <td>{props.getData.ConPayment.payment_date !== null? props.getData.ConPayment.payment_date.toString().substring(0,10) : null}</td>
 			<td>
                 <Media className="align-items-center">
 					<a href={props.getData.ConPayment.img_pay}>
@@ -434,7 +434,7 @@ class TransactionComplete extends React.Component{
                                 <Col md={4}>
                                     <FormGroup>
                                         <Label>Payment Date</Label>
-                                        <Input type="text" defaultValue={this.state.dataTransactionCompleteByInvoice.ConPayment.payment_date.toString().substring(0, 10)} readOnly />
+                                        <Input type="text" defaultValue={this.state.dataTransactionCompleteByInvoice.ConPayment.payment_date !== null? this.state.dataTransactionCompleteByInvoice.ConPayment.payment_date.toString().substring(0, 10) : null} readOnly />
                                     </FormGroup>
                                 </Col>
                                 <Col md={4}>

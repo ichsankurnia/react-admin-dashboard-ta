@@ -30,7 +30,7 @@ const TableRow = (props) => {
 			<th scope="row">#{props.getData.invoice_no}</th>
             <td>{props.getData.name}</td>
             <td>{props.getData.email}</td>
-            <td>{props.getData.payment_date.toString().substring(0, 10)}</td>
+            <td>{props.getData.payment_date !== null? props.getData.payment_date.toString().substring(0, 10) : null }</td>
             <td>{props.getData.payment_method}</td>
             <td>{props.getData.total_price}</td>
 			<td>{props.getData.description}</td>
