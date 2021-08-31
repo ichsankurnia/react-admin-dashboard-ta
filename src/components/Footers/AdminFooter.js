@@ -25,13 +25,13 @@ class Footer extends React.Component {
 							</NavItem>
 
 							<NavItem>
-								<NavLink href="https://darkyasha.goes2nobel.com/" rel="noopener noreferrer" target="_blank">
+								<NavLink href="https://ories.goes2nobel.com" rel="noopener noreferrer" target="_blank">
 									About Us
 								</NavLink>
 							</NavItem>
 
 							<NavItem>
-								<NavLink href="https://darkyasha.goes2nobel.com/" rel="noopener noreferrer" target="_blank" >
+								<NavLink href="https://ories.goes2nobel.com" rel="noopener noreferrer" target="_blank" >
 									Blog
 								</NavLink>
 							</NavItem>
