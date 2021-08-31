@@ -147,6 +147,19 @@ function Profile (props) {
 		setModalPhoto(!modalPhoto)
 	}
 
+	const capitalEachWord = (letter) => {
+		try {
+			var separateWord = letter.toLowerCase().split(' ');
+			for (var i = 0; i < separateWord.length; i++) {
+			   separateWord[i] = separateWord[i].charAt(0).toUpperCase() +
+			   separateWord[i].substring(1);
+			}
+			return separateWord.join(' ');
+		} catch (error) {
+			return letter
+		}
+    }
+
 	return (
 		<>
 			<UserHeader nameUser={dataUser !== null? dataUser.name : null} onClickEdit={openOrCloseModal} />
@@ -193,23 +206,23 @@ function Profile (props) {
 								</Row>
 								<div className="text-center">
 									<h3>
-										{dataUser !== null? dataUser.name : null}
+										{dataUser !== null? capitalEachWord(dataUser.name) : null}
 										<span className="font-weight-light">, 27</span>
 									</h3>
 									<div className="h5 font-weight-300">
 										<i className="ni location_pin mr-2" />
-										Bucharest, Romania
+										Sumatera, Indonesia
 									</div>
 									<div className="h5 mt-4">
 									<	i className="ni business_briefcase-24 mr-2" />
-										Solution Manager - Creative Tim Officer
+										Mobile Developer - GPS Tim Officer
 									</div>
 									<div>
 										<i className="ni education_hat mr-2" />
-										University of Computer Science
+										State Polytechnic of Padang
 									</div>
 									<hr className="my-4" />
-									<p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
+									<p>{capitalEachWord(dataUser?.name)} — the name taken by Melbourne-raised, Brooklyn-based Nick {dataUser?.username} — writes, performs and records all of his own music.</p>
 									<a href="#pablo" onClick={e => e.preventDefault()}>Show more</a>
 								</div>
 							</CardBody>
@@ -236,7 +249,7 @@ function Profile (props) {
 												<FormGroup>
 													<label className="form-control-label" htmlFor="input-username" >Username</label>
 													<Input className="form-control-alternative" type="text" id="input-username" placeholder="Username" readOnly 
-													defaultValue={dataUser !== null? dataUser.username : null} />
+													defaultValue={dataUser !== null? capitalEachWord(dataUser.username) : null} />
 												</FormGroup>
 											</Col>
 											<Col lg="6">
@@ -280,7 +293,7 @@ function Profile (props) {
 											<Col md="8">
 												<FormGroup>
 													<label className="form-control-label" htmlFor="input-address" >Address</label>
-													<Input className="form-control-alternative" type="textarea" id="input-address" placeholder="Home Address" defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" />
+													<Input className="form-control-alternative" type="textarea" id="input-address" placeholder="Home Address" defaultValue="Contrary to popular belief, Lorem Ipsum 45 BC" />
 												</FormGroup>
 											</Col>
 										</Row>
@@ -313,7 +326,7 @@ function Profile (props) {
 									<FormGroup>
 										<label>About Me</label>
 										<Input rows="4" className="form-control-alternative" type="textarea" placeholder="A few words about you ..."
-											defaultValue="A beautiful Dashboard for Bootstrap 4. It is Free and Open Source."
+											defaultValue="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
 										/>
 									</FormGroup>
 									</div>
