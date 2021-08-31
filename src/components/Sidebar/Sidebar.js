@@ -111,6 +111,7 @@ class Sidebar extends React.Component {
 					{logo ? (
 						<NavbarBrand className="pt-0" {...navbarBrandProps}>
 							<img alt={logo.imgAlt} className="navbar-brand-img" src={logo.imgSrc}/>
+							<p style={{marginBottom: -25, marginTop: -5, fontWeight: 400, fontStyle: 'italic'}}>Repair Indonesia</p>
 						</NavbarBrand>
 					) : null}
 

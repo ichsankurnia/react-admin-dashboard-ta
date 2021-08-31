@@ -95,7 +95,7 @@ class Admin extends React.Component {
 				<Sidebar {...this.props} routes={routes}
 					logo={{
 						innerLink: "/admin/index",
-						imgSrc: require("./../assets/img/brand/argon-react.png"),
+						imgSrc: require("./../assets/img/brand/LOGO3.png"),
 						imgAlt: "..."
 					}}
 					userImg={dataUser !== null? dataUser.Profil.user_img !== null? dataUser.Profil.user_img : noPhoto : noPhoto}
