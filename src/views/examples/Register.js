@@ -95,7 +95,7 @@ class Register extends React.Component {
 	render() {
 		return (
 			<>
-				<Col lg="6" md="8">
+				<Col lg="6" md="7">
 					<Card className="bg-secondary shadow border-0">
 						<CardHeader className="bg-transparent pb-5">
 							<div className="text-muted text-center mt-1">

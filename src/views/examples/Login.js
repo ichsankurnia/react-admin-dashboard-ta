@@ -116,12 +116,12 @@ class Login extends React.Component {
 								</Button>
 							</div> */}
 						</CardHeader>
-						<CardBody className="px-lg-5 py-lg-5">
+						<CardBody className="px-lg-5 py-lg-3">
 							{/* <div className="text-center text-muted mb-4">
 								<small>Or sign in with credentials</small>
 							</div> */}
 							<Form role="form">
-								<FormGroup className="mb-3">
+								<FormGroup>
 									<InputGroup className="input-group-alternative">
 										<InputGroupAddon addonType="prepend">
 											<InputGroupText>
@@ -147,8 +147,8 @@ class Login extends React.Component {
 										<span className="text-muted">Remember me</span>
 									</label>
 								</div>
-								<div className="text-center" style={{marginTop: 20}}>
-									<Button className="my-4" color="primary" type="button" onClick={this.handleLogin}>
+								<div className="text-center" style={{marginTop: 20, marginBottom: 5}}>
+									<Button className="my-3" color="primary" type="button" onClick={this.handleLogin}>
 										Sign in
 									</Button>
 								</div>
