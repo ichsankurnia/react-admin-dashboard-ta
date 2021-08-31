@@ -31,6 +31,19 @@ function AdminNavbar(props) {
 		}
 	}
 
+	const capitalEachWord = (letter) => {
+		try {
+			var separateWord = letter.toLowerCase().split(' ');
+			for (var i = 0; i < separateWord.length; i++) {
+			   separateWord[i] = separateWord[i].charAt(0).toUpperCase() +
+			   separateWord[i].substring(1);
+			}
+			return separateWord.join(' ');
+		} catch (error) {
+			return letter
+		}
+    }
+
 	return (
 		<>
 			<Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -56,7 +69,7 @@ function AdminNavbar(props) {
 										<img alt="..." src={props.imgUser}/>
 									</span>
 									<Media className="ml-2 d-none d-lg-block">
-										<span className="mb-0 text-sm font-weight-bold">{props.nameUser}</span>
+										<span className="mb-0 text-sm font-weight-bold">{capitalEachWord(props.nameUser)}</span>
 									</Media>
 								</Media>
 							</DropdownToggle>
